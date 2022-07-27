@@ -1,0 +1,14 @@
+div#offcanvasTop {
+    height: 100vh;
+}
+span.badge.text-danger.fs-6.counter {
+    background-color: lightgray;
+    width: 110px;
+}
+.btn-success{
+    background-color: darkgreen !important;
+}
+h5.card-title1 {
+    font-size: 25px;
+}
+
