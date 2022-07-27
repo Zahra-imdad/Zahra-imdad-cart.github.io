@@ -11,6 +11,8 @@ del = document.querySelectorAll('#delBtn');
 let quan = 0;
 let amount = 0;
 
+
+
 cartBtn.forEach((el) => {
     
     el.addEventListener("click", () => {
@@ -45,7 +47,7 @@ cartBtn.forEach((el) => {
                             </div>
                             <div class="card-footer border-0">
                             <span class="badge text-dark counter ">Qty : ${prodQuan.innerHTML}</span>
-                            <button id="delBtn" data-btnID="${el.id}" onclick="${removeProd(div)}" class="btn btn-danger">delete</button>
+                            <button id="delBtn" data-btnID="${el.id}" class="btn btn-danger del-btn">delete</button>
                             </div>
                             </div`;
             card.append(div);
@@ -88,24 +90,26 @@ function minus(e){
 }
 
 // CART ITEM REMOVE
-
-function removeProd(div){
-    document.querySelectorAll('#delBtn').forEach((el)=>{
+var del1 = document.querySelectorAll('.del-btn')
+   Object.values(del1).forEach((el)=>{
+        console.log(el)
         el.addEventListener('click',()=>{
-            console.log(Total.innerHTML)
-            console.log(parseInt(Total.innerHTML)-parseInt(price.innerHTML))
-            console.log(el.getAttribute('data-btnID'))
-            const delBtnId =el.getAttribute('data-btnID')
+            
+            //console.log(Total.innerHTML)
+            //console.log(parseInt(Total.innerHTML)-parseInt(price.innerHTML))
+           
+            let delBtnId =el.getAttribute('data-btnID')
+            console.log("data id:",delBtnId)
             delete cart[delBtnId]
-            renderCart()
+            // renderCart()
             console.log(cart)
             div.remove()
             
-            amount -= parseInt(price.innerHTML.replace("$ ", "").trim());
-            Total.innerHTML = amount;
+            // amount -= parseInt(price.innerHTML.replace("$ ", "").trim());
+            // Total.innerHTML = amount;
         })
         
     })
-}
+
 
 
