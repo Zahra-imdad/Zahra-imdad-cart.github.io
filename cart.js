@@ -1,4 +1,4 @@
- cart = {};
+cart = {};
 plus = document.querySelectorAll('.fa-plus');
 quantity = document.querySelectorAll(".quantity");
 dec = document.querySelectorAll('.fa-minus');
@@ -10,7 +10,7 @@ let quan = 0;
 let amount = 0;
 
 
-
+// ========================ADD TO CART===========================
 cartBtn.forEach((el) => {
     
     el.addEventListener("click", () => {
@@ -18,7 +18,6 @@ cartBtn.forEach((el) => {
         const img = parent.querySelector("img");
         const title = parent.querySelector("h5");
         price = parent.querySelector("p");
-        const span = parent.querySelector("span");
         prodQuan = parent.querySelector('.counter');
 
         if (cart[el.id] === undefined) {
@@ -31,7 +30,6 @@ cartBtn.forEach((el) => {
             console.log(cart[el.id]);
         }
 
-        console.log(cart);
         renderCart();
          div = document.createElement("div");
          div.className = "col text-dark cart-prod"
@@ -60,6 +58,7 @@ function renderCart() {
     count.innerHTML = Object.keys(cart).length;
 }
 
+// ========================QUANTITY INC===========================
 plus.forEach((e)=>{
     e.addEventListener("click",()=>{
         e.nextElementSibling.innerHTML= parseInt(e.nextElementSibling.innerHTML)+1;
@@ -67,37 +66,37 @@ plus.forEach((e)=>{
     })
 })
 
+// ========================QUANTITY DEC===========================
 dec.forEach((e)=>{
     e.addEventListener("click",()=>{
-       minus(e);
+        let del_count = parseInt(e.previousElementSibling.innerHTML);
+        if(del_count ===0){
+         e.previousElementSibling.innerHTML = 0;
+        }else{
+         e.previousElementSibling.innerHTML = parseInt(e.previousElementSibling.innerHTML)-1;
+        }
     })
 })
 
-function minus(e){
-    let del_count = parseInt(e.previousElementSibling.innerHTML);
-    if(del_count ===0){
-     e.previousElementSibling.innerHTML = 0;
-    }else{
-     e.previousElementSibling.innerHTML = parseInt(e.previousElementSibling.innerHTML)-1;
-    }
-}
-// CART ITEM REMOVE
+
+// ========================CART ITEM REMOVE===========================
 function showCart(){
     var del1 = document.querySelectorAll('.del-btn')
     Object.values(del1).forEach((el)=>{
-         el.addEventListener('click',()=>{
+         el.addEventListener('click',(e)=>{
              let delBtnId =el.getAttribute('data-btnID')
+             console.log("BTNID: ",el.getAttribute('data-btnID'))
              delete cart[delBtnId]
              el.closest(".col").remove()
-             renderCart()
-                amount -= parseInt(price.innerHTML.replace("$ ", "").trim());
-                Total.innerHTML = amount*parseInt(prodQuan.innerHTML); 
-             
+             renderCart()       
+            price1 = el.parentElement.previousElementSibling.children[1].innerHTML
+                
+            amount -= parseInt(price1.replace("$ ", "").trim())
+            Total.innerHTML = amount*parseInt(prodQuan.innerHTML)    
          }) 
      })
+     
 }
-
-
 
 
 
